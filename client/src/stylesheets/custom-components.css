@@ -18,7 +18,7 @@
 a:hover {
     cursor: pointer;
     color: var(--colour-primary);
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 
 .loader-parent {

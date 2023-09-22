@@ -7,6 +7,12 @@
     --colour-fourth: #FBF0B2;
 }
 
+hr {
+    height: 0.1px;
+    background-color: #1c1c1c;
+    border: none;
+}
+
 .bg-primary {
     background-color: var(--colour-primary);
 }
@@ -61,6 +67,10 @@
 
 .text-white {
     color: #fff;
+}
+
+.text-black {
+    color: #1c1c1c;
 }
 
 .text-sm {
