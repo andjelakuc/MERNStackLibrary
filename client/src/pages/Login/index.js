@@ -1,13 +1,40 @@
-import React from 'react'
-import { Form } from 'antd'
+import React, {useEffect} from 'react'
+import { Form, message } from 'antd'
 import Button from '../../components/Button'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { LoginUser } from '../../apicalls/users';
+import { useDispatch } from 'react-redux';
+import { HideLoading, ShowLoading } from '../../redux/loadersSlice';
 
 function Login() {
 
-    const onFinish = async (values) => {
-        console.log("Success:", values)
-      };
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const onFinish = async (values) => {
+    try {
+      dispatch(ShowLoading());
+      const response = await LoginUser(values);
+      dispatch(HideLoading());
+      if (response.success) {
+        message.success(response.message);
+        localStorage.setItem("token", response.data);
+        window.location.href = "/";
+      } else {
+        message.error(response.message);
+      }
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/home");
+    }
+  }, []);
 
 
   return (
@@ -22,13 +49,25 @@ function Login() {
 
            <Form.Item
            label="Email"
-           name="email">
+           name="email"
+           rules={[
+            {
+            required: true,
+            message: "Unesite mejl adresu",
+            },
+          ]}>
            <input type="email" placeholder="Email" />
            </Form.Item>
 
            <Form.Item
            label="Šifra"
-           name="password">
+           name="password"
+           rules={[
+            {
+            required: true,
+            message: "Unesite šifru",
+            },
+          ]}>
            <input type="password" placeholder="Šifra" />
            </Form.Item>
 
