@@ -91,7 +91,7 @@ router.get("/get-logged-in-user", authMiddleware, async (req, res) => {
         }
         return res.send({
             success: true,
-            message: "User details fetched successfully",
+            message: "Uspešno dohvatanje podataka o korisniku",
             data: user,
         });
     } catch (error) {
@@ -101,5 +101,48 @@ router.get("/get-logged-in-user", authMiddleware, async (req, res) => {
         });
     }
 });
+
+// dohvatanje svih korisnika
+router.get("/get-all-users/:role", authMiddleware, async (req, res) => {
+    try {
+      const users = await User.find({ role: req.params.role }).sort({
+        createdAt: -1,
+      });
+      return res.send({
+        success: true,
+        message: "Uspešno dohvatanje podataka o korisnicima",
+        data: users,
+      });
+    } catch (error) {
+      return res.send({
+        success: false,
+        message: error.message,
+      });
+    }
+  });
+
+  // dohvatanje korisnika po id-ju
+router.get("/get-user-by-id/:id", authMiddleware, async (req, res) => {
+    try {
+      const user = await User.findById(req.params.id);
+      if (!user) {
+        return res.send({
+          success: false,
+          message: "Korisnik ne postoji",
+        });
+      }
+      return res.send({
+        success: true,
+        message: "Uspešno dohvatanje podataka o korisniku",
+        data: user,
+      });
+  
+    } catch (error) {
+      return res.send({
+        success: false,
+        message: 'Korisnik ne postoji',
+      });
+    }
+  });
 
 module.exports = router;

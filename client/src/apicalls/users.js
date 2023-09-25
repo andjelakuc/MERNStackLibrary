@@ -29,3 +29,25 @@ export const GetLoggedInUserDetails = async () => {
         throw error;
     }
 }
+
+// dohvatanje svih korisnika
+export const GetAllUsers = async (role) => {
+    try {
+      const response = await axiosInstance.get(`/api/users/get-all-users/${role}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+  
+  
+  // dohvatanje korisnika po id-ju
+  
+  export const GetUserById = async (id) => {
+    try {
+      const response = await axiosInstance.get(`/api/users/get-user-by-id/${id}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
