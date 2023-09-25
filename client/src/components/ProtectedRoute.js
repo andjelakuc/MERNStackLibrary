@@ -42,7 +42,7 @@ function ProtectedRoute({ children }) {
   return (
     <div>
       {user && (
-        <div className="p-1">
+        <div className="p-1 bg-third">
           <div className="header p-2 bg-primary flex justify-between rounded items-center">
             <h1
               className="text-2xl text-black font-bold cursor-pointer"

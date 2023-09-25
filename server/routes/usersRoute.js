@@ -79,7 +79,7 @@ router.post("/login", async (req, res) => {
     }
 });
 
-//get logged in user details
+//dohvatanje detalja o korisniku
 router.get("/get-logged-in-user", authMiddleware, async (req, res) => {
     try {
         const user = await User.findById(req.body.userIdFromToken);

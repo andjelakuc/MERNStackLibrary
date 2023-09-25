@@ -9,7 +9,7 @@ module.exports = function (req, res, next) {
         } else {
             return res.send({
                 success: false,
-                message: "Invalid token",
+                message: "Token nije validan",
             });
         }
     } catch (error) {
