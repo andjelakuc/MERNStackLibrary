@@ -54,7 +54,7 @@ function Users({ role }) {
         <div>
           <Button
             title="Knjige"
-            variant="outlined"
+            color="fourth"
             onClick={() => {
               setSelectedUser(record);
               setShowIssuedBooks(true);
