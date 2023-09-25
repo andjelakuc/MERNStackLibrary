@@ -11,6 +11,8 @@ import './stylesheets/form-elements.css';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useSelector } from 'react-redux';
 import Loader from './components/Loader';
+import FirstPage from './pages/First';
+import Profile from './pages/Profile';
 
 function App() {
 
@@ -21,7 +23,9 @@ function App() {
       {loading && <Loader />}
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+          <Route path="/" element={<FirstPage />} />
+          <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>

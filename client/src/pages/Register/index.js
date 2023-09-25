@@ -37,14 +37,35 @@ function Register() {
 
 
   return (
+    <div>
+      <div className="p-1 bg-primary">
+      <div className="header p-2 bg-third flex justify-between rounded items-center">
+        <h1
+          className="text-2xl text-black font-bold cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          BIBLIOTEKA
+        </h1>
+
+        <div className="flex items-center gap-1 bg-white p-1 rounded">
+          <i className="ri-user-heart-line"></i>
+          <span
+            className="text-sm cursor-pointer"
+            onClick={() => navigate("/login")}
+          >
+            Prijavite se
+          </span>
+        </div>
+      </div>
+    </div>
     <div className='h-screen bg-primary flex items-center justify-center'>
         
         <div className='authentication-form bg-third p-3 rounded'>
         <h1 className="text-black text-2xl font-bold mb-1">
-          BIBLIOTEKA - REGISTRACIJA
+          REGISTRUJTE SE
         </h1>
         <hr />
-            <Form layout='vertical' onFinish={onFinish}>
+            <Form layout='vertical' onFinish={onFinish} className='mt-1'>
 
            <Form.Item
            label="Ime"
@@ -104,6 +125,7 @@ function Register() {
 
             </Form>
         </div>
+    </div>
     </div>
   )
 }
