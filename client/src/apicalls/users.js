@@ -51,3 +51,13 @@ export const GetAllUsers = async (role) => {
       throw error;
     }
   }
+
+  // obriši korisnika
+export const DeleteUser = async (id) => {
+  try {
+    const response = await axiosInstance.delete(`/api/users/delete-user/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}

@@ -145,4 +145,14 @@ router.get("/get-user-by-id/:id", authMiddleware, async (req, res) => {
     }
   });
 
+  //brisanje korisnika
+  router.delete("/delete-user/:id", authMiddleware, async (req, res) => {
+    try {
+      await User.findByIdAndDelete(req.params.id);
+      return res.send({ success: true, message: "Korisnik uspešno obrisan" });
+    } catch (error) {
+      return res.send({ success: false, message: error.message });
+    }
+  });
+
 module.exports = router;
