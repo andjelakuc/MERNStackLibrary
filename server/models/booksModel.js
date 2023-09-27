@@ -37,6 +37,7 @@ const bookSchema = new mongoose.Schema(
     rentPerDay: {
       type: Number,
       required: true,
+      default: 5,
     },
     totalCopies: {
       type: Number,

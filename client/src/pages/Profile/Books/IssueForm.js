@@ -54,13 +54,13 @@ function IssueForm({
   const onIssue = async () => {
     try {
       dispatch(ShowLoading());
+      const today = moment().format("YYYY-MM-DD");
       const response = await IssueBook({
         book: selectedBook._id,
         user: patronData._id,
         issueDate: new Date(),
-        returnDate,
-        rent:
-          moment(returnDate).diff(moment(), "days") * selectedBook?.rentPerDay,
+        returnDate: moment(today).add(15, "days"),
+        rent: 0,
         fine: 0,
         issuedBy: user._id,
       });
@@ -164,14 +164,14 @@ function IssueForm({
           />
         </div>
         <div>
-          <span>Datum vraćanja knjige </span>
-          <input
+          {/* <span>Datum vraćanja knjige </span> */}
+          {/* <input
             type="date"
             value={returnDate}
             onChange={(e) => setReturnDate(e.target.value)}
             placeholder="Return Date"
             min={moment().format("YYYY-MM-DD")}
-          />
+          /> */}
         </div>
 
         {errorMessage && <span className="error-message">{errorMessage}</span>}
@@ -179,14 +179,15 @@ function IssueForm({
         {validated && (
           <div className="bg-third p-1 text-black">
             <h1 className="text-sm">Član : {patronData.name}</h1>
-            <h1>Broj dana : {moment(returnDate).diff(moment(), "days")}</h1>
-            <h1>Cena po danu : {selectedBook.rentPerDay} RSD</h1>
-            <h1>
+            {/* <h1>Broj dana : {moment(returnDate).diff(moment(), "days")}</h1> */}
+            <h1>Knjiga : {selectedBook.title}</h1>
+            <h1>Autor : {selectedBook.author}</h1>
+            {/* <h1>
               Ukupno :{" "}
               {moment(returnDate).diff(moment(), "days") *
                 selectedBook?.rentPerDay}{" "}
               RSD
-            </h1>
+            </h1> */}
           </div>
         )}
 
@@ -198,7 +199,8 @@ function IssueForm({
           />
           <Button
             title="Potvrdi"
-            disabled={patronId === "" || returnDate === ""}
+            //disabled={patronId === "" || returnDate === ""}
+            disabled={patronId === ""}
             onClick={validate}
           />
           {/* {type === "add" && (
@@ -213,7 +215,8 @@ function IssueForm({
               title="Pozajmi"
               //title={type === "edit" ? "Edit" : "Issue"}
               onClick={onIssue}
-              disabled={patronId === "" || returnDate === ""}
+              //disabled={patronId === "" || returnDate === ""}
+              disabled={patronId === ""}
             />
           )}
         </div>

@@ -2,11 +2,11 @@ import { Modal, Table, message } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../../../redux/loadersSlice";
-import { GetIssues } from "../../../apicalls/issues";
+import { GetIssues, ReturnBook } from "../../../apicalls/issues";
 import moment from "moment";
 import Button from "../../../components/Button";
 
-function Issues({ open = false, setOpen, selectedBook }) {
+function Issues({ open = false, setOpen, selectedBook, reloadBooks }) {
   const [issues, setIssues] = React.useState([]);
   const [selectedIssue, setSelectedIssue] = React.useState(null);
   const [showIssueForm, setShowIssueForm] = React.useState(false);
@@ -33,6 +33,35 @@ function Issues({ open = false, setOpen, selectedBook }) {
     getIssues();
   }, []);
 
+  const onReturnHandler = async (issue) => {
+    try {
+      // provera da li je knjiga vraćena pre roka
+      const today = moment().format("YYYY-MM-DD");
+      const dueDate = moment(issue.returnDate).format("YYYY-MM-DD");
+      if (today > dueDate) {
+        // ako je knjiga vraćena posle isteka roka
+        // računamo koliko će korisnik dodatno da plati
+        const fine = moment(today).diff(dueDate, "days") * selectedBook?.rentPerDay;
+        issue.fine = fine;
+      }
+      issue.returnedDate = new Date();
+      issue.book = issue.book._id;
+      dispatch(ShowLoading());
+      const response = await ReturnBook(issue);
+      dispatch(HideLoading());
+      if (response.success) {
+        message.success(response.message);
+        getIssues();
+        reloadBooks();
+      } else {
+        message.error(response.message);
+      }
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
+  };
+
   const columns = [
     {
       title: "ID i ime korisnika",
@@ -55,13 +84,12 @@ function Issues({ open = false, setOpen, selectedBook }) {
       render: (dueDate) => moment(dueDate).format("DD-MM-YYYY hh:mm A"),
     },
     {
-      title: "Iznos",
-      dataIndex: "rent",
-      render: (rent, record) => (
+      title: "Kazna za prekoračenje roka",
+      dataIndex: "fine",
+      render: (fine, record) => (
         <div className="flex flex-col">
-          <span>Iznajmljivanje : {record.rent} RSD</span>
           <span className="text-xs text-gray-500">
-            Prekoračenje : {record.fine || 0} RSD
+            {record.fine || 0} RSD
           </span>
         </div>
       ),
@@ -90,12 +118,10 @@ function Issues({ open = false, setOpen, selectedBook }) {
                   setSelectedIssue(record);
                   setShowIssueForm(true);
                 }}
-                //variant="outlined"
               />
               <Button
                 title="Vrati"
-                //onClick={() => onReturnHandler(record)}
-                //variant="outlined"
+                onClick={() => onReturnHandler(record)}
               />
               <i
                 className="ri-delete-back-2-line"
@@ -114,10 +140,10 @@ function Issues({ open = false, setOpen, selectedBook }) {
       open={open}
       onCancel={() => setOpen(false)}
       footer={null}
-      width={1400}
+      width={1500}
       centered
     >
-      <h1 className="text-xl mt-1 mb-1 text-black uppercase font-bold text-center">
+      <h1 className="text-xl mt-1 mb-1 text-black font-bold text-center">
         Pozajmice knjige {selectedBook.title}
       </h1>
       <Table columns={columns} dataSource={issues} />

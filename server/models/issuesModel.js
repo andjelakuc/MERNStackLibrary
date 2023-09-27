@@ -15,7 +15,7 @@ const issueSchema = new mongoose.Schema(
     },
     returnDate: {
       type: Date,
-        default: "",
+      default: "",
     },
     returnedDate: {
       type: Date,
