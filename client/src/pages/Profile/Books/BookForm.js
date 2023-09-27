@@ -148,7 +148,7 @@ function BookForm({
             </Form.Item>
           </Col>
 
-          <Col span={8}>
+          {/* <Col span={8}>
             <Form.Item
               label="Cena po danu"
               name="rentPerDay"
@@ -156,7 +156,7 @@ function BookForm({
             >
               <input type="text" />
             </Form.Item>
-          </Col>
+          </Col> */}
 
           <Col span={8}>
             <Form.Item

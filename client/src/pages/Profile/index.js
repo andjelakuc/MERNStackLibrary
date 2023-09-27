@@ -13,12 +13,41 @@ function Profile() {
   return (
     <div>
       <Tabs defaultActiveKey="1" centered>
-        <TabPane tab="Knjige" key="1">
-          <Books />
-        </TabPane>
-        <TabPane tab="Korisnici" key="2">
-          <Users role="patron"/>
-        </TabPane>
+        {/* <TabPane tab="General" key="1">
+          <BasicDetails />
+        </TabPane> */}
+
+        {/* {role === "patron" && (
+             <TabPane tab="Books Borrowed" key="2">
+             <BorrowedBooks />
+           </TabPane>
+        )} */}
+
+        {role !== "patron" && (
+          <TabPane tab="Knjige" key="3">
+            <Books />
+          </TabPane>
+        )}
+        {role !== "patron" && (
+          <TabPane tab="Korisnici" key="4">
+            <Users role="patron" />
+          </TabPane>
+        )}
+        {role === "admin" && (
+          <TabPane tab="Bibliotekari" key="5">
+            <Users role="librarian" />
+          </TabPane>
+        )}
+        {role === "admin" && (
+          <TabPane tab="Admini" key="6">
+            <Users role="admin" />
+          </TabPane>
+        )}
+        {/* {role === "admin" && (
+          <TabPane tab="Reports" key="7">
+            <Reports />
+          </TabPane>
+        )} */}
       </Tabs>
     </div>
   );
