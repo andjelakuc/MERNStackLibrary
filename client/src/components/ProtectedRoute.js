@@ -45,13 +45,13 @@ function ProtectedRoute({ children }) {
         <div className="p-1 bg-third">
           <div className="header p-2 bg-primary flex justify-between rounded items-center">
             <h1
-              className="text-2xl text-black font-bold cursor-pointer"
+              className="text-2xl text-black cursor-pointer bg-white outerline p-1 rounded"
               onClick={() => navigate("/home")}
             >
               BIBLIOTEKA
             </h1>
 
-            <div className="flex items-center gap-1 bg-white p-1 rounded">
+            <div className="flex items-center gap-1 bg-white p-1 rounded outerline">
               <i
                 className="ri-empathize-line"
                 onClick={() => navigate("/profile")}

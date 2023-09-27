@@ -44,6 +44,12 @@ a:hover {
     border-radius: 4px;
 }
 
+.outerline {
+    border-color: #1c1c1c;
+    border-width:1px;
+    border-style:solid;
+}
+
 .shadow {
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
     border: 1px solid #cdcdcd;
@@ -72,7 +78,8 @@ table {
     color: white;
     padding: 10px;
     border-radius: 4px;
-    width: 100%;
+    width: 95%;
+    
 }
 
 @keyframes loader-anim {
@@ -83,3 +90,20 @@ table {
         transform: rotate(360deg);
     }
 }
+
+.ant-tabs-tab, .ant-tabs-tab-active, .ant-tabs-tab-btn {
+    color: #363636 !important; 
+    font-weight: 500;
+ }
+
+ .ant-tabs-ink-bar {
+    position: absolute;
+    background: #D8B4F8;
+    pointer-events: none;
+    border-bottom: 2px solid #D8B4F8;
+    border-color: #D8B4F8;
+ }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }

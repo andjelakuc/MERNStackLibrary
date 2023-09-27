@@ -43,7 +43,7 @@ export const DeleteBook = async (id) => {
   }
 }
 
-// get book by id
+// dohvati knjigu po id-ju
 export const GetBookById = async (id) => {
   try {
     const response = await axiosInstance.get(`/api/books/get-book-by-id/${id}`);

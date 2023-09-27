@@ -7,10 +7,11 @@ function Button(
         type = "button", 
         onClick,
         fullWidth =  false,
-        disabled
+        disabled,
     }
 ) {
     let className = fullWidth ? "w-100 rounded " : "pr-2 pl-2 rounded ";
+    className += "cursor-pointer ";
     if (variant === 'contained' && !disabled) {
         className += 'bg-' + color + ' text-black'
     }

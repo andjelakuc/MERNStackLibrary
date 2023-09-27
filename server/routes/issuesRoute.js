@@ -28,7 +28,7 @@ router.post("/issue-new-book", authMiddleware, async (req, res) => {
   }
 });
 
-// dohvatanje zapisa iznajmljivanja
+// dohvatanje zapisa iznajmljivanja za jednu knjigu
 router.post("/get-issues", authMiddleware, async (req, res) => {
   try {
     delete req.body.userIdFromToken;

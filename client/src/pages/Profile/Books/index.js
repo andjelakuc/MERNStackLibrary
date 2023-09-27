@@ -5,11 +5,15 @@ import { Table, message } from "antd";
 import { HideLoading, ShowLoading } from "../../../redux/loadersSlice";
 import { useDispatch } from "react-redux";
 import { DeleteBook, GetAllBooks } from "../../../apicalls/books";
+import Issues from "./Issues";
+import IssueForm from "./IssueForm";
 
 function Books() {
   const [formType, setFormType] = useState("add");
   const [selectedBook, setSelectedBook] = useState(null);
   const [openBookForm, setOpenBookForm] = React.useState(false);
+  const [openIssues, setOpenIssues] = React.useState(false);
+  const [openIssuesForm, setOpenIssuesForm] = React.useState(false);
   const [books, setBooks] = React.useState([]);
   const dispatch = useDispatch();
 
@@ -92,30 +96,54 @@ function Books() {
       title: "",
       dataIndex: "action",
       render: (text, record) => (
-        <div className="flex gap-1">
-          <i className="ri-delete-bin-5-line"
-          onClick={() => deleteBook(record._id)}></i>
+        <div className="flex gap-1 items-center">
           <i
-            className="ri-pencil-line"
+            className="ri-file-edit-line"
             onClick={() => {
               setFormType("edit");
               setSelectedBook(record);
               setOpenBookForm(true);
             }}
           ></i>
+
+          <span
+            className="flex items-center gap-1 bg-secondary p-1 rounded cursor-pointer outerline"
+            onClick={() => {
+              setOpenIssues(true);
+              setSelectedBook(record);
+            }}
+          >
+            Sve pozajmice
+          </span>
+
+          <span
+            className="flex items-center gap-1 bg-secondary p-1 rounded cursor-pointer outerline"
+            onClick={() => {
+              setOpenIssuesForm(true);
+              setSelectedBook(record);
+            }}
+          >
+            Izdaj knjigu
+          </span>
+          <i
+            className="ri-delete-back-2-line"
+            onClick={() => deleteBook(record._id)}
+          ></i>
         </div>
       ),
     },
   ];
   return (
-    <div>
+    <div className="h-screen">
       <div className="flex justify-end">
         <Button
           title="Dodaj knjigu"
           color="fourth"
-          onClick={() => {setFormType("add");
-          setSelectedBook(null);
-          setOpenBookForm(true);}}
+          onClick={() => {
+            setFormType("add");
+            setSelectedBook(null);
+            setOpenBookForm(true);
+          }}
         />
       </div>
 
@@ -129,6 +157,26 @@ function Books() {
           formType={formType}
           selectedBook={selectedBook}
           setSelectedBook={setSelectedBook}
+        />
+      )}
+
+      {openIssues && (
+        <Issues
+          open={openIssues}
+          setOpen={setOpenIssues}
+          selectedBook={selectedBook}
+          setSelectedBook={setSelectedBook}
+          reloadBooks={getBooks}
+        />
+      )}
+
+      {openIssuesForm && (
+        <IssueForm
+          open={openIssuesForm}
+          setOpen={setOpenIssuesForm}
+          selectedBook={selectedBook}
+          setSelectedBook={setSelectedBook}
+          getData={getBooks}
         />
       )}
     </div>

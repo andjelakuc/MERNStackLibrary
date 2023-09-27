@@ -64,7 +64,7 @@ function Users({ role }) {
       ),
     },
   ];
-  return <div>
+  return <div className="h-screen">
     <Table dataSource={users} columns={columns} />
   </div>;
 }
