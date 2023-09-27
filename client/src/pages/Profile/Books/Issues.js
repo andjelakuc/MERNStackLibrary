@@ -138,7 +138,7 @@ function Issues({ open = false, setOpen, selectedBook, reloadBooks }) {
                 onClick={() => onReturnHandler(record)}
               />
               <i
-                className="ri-delete-back-2-line"
+                className="ri-delete-bin-2-line"
                 onClick={() => deleteIssueHandler(record)}
               ></i>
             </div>

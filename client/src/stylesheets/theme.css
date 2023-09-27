@@ -5,7 +5,9 @@
     --colour-secondary: #FFC7EA;
     --colour-third: #CAEDFF;
     --colour-fourth: #FBF0B2;
-    --colour-red: rgb(225, 109, 109);
+    /* --colour-red: rgb(225, 109, 109); */
+    --colour-red: #fdaaaa;
+    --colour-green: #C7E9B0;
 }
 
 hr {
@@ -32,6 +34,9 @@ hr {
 
 .bg-red {
     background-color: var(--colour-red);
+}
+.bg-green {
+    background-color: var(--colour-green);
 }
 
 .bg-white {

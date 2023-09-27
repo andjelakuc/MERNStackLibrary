@@ -115,7 +115,7 @@ function Users({ role }) {
             onClick={() => deleteUser(record._id)}
           />
           {/* <i
-            className="ri-delete-back-2-line"
+            className="ri-delete-bin-2-line"
             onClick={() => deleteUser(record._id)}
           ></i> */}
         </div>

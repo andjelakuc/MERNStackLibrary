@@ -126,7 +126,7 @@ function Books() {
             Pozajmi knjigu
           </span>
           <i
-            className="ri-delete-back-2-line"
+            className="ri-delete-bin-2-line"
             onClick={() => deleteBook(record._id)}
           ></i>
         </div>
