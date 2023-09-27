@@ -123,7 +123,7 @@ function Books() {
               setSelectedBook(record);
             }}
           >
-            Izdaj knjigu
+            Pozajmi knjigu
           </span>
           <i
             className="ri-delete-back-2-line"

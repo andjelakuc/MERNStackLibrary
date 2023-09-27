@@ -2,7 +2,7 @@ import { Modal, Table, message } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../../../redux/loadersSlice";
-import { GetIssues, ReturnBook } from "../../../apicalls/issues";
+import { DeleteIssue, GetIssues, ReturnBook } from "../../../apicalls/issues";
 import moment from "moment";
 import Button from "../../../components/Button";
 
@@ -48,6 +48,27 @@ function Issues({ open = false, setOpen, selectedBook, reloadBooks }) {
       issue.book = issue.book._id;
       dispatch(ShowLoading());
       const response = await ReturnBook(issue);
+      dispatch(HideLoading());
+      if (response.success) {
+        message.success(response.message);
+        getIssues();
+        reloadBooks();
+      } else {
+        message.error(response.message);
+      }
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
+  };
+
+  const deleteIssueHandler = async (issue) => {
+    try {
+      dispatch(ShowLoading());
+      const response = await DeleteIssue({
+        ...issue,
+        book: issue.book._id,
+      });
       dispatch(HideLoading());
       if (response.success) {
         message.success(response.message);
@@ -113,19 +134,12 @@ function Issues({ open = false, setOpen, selectedBook, reloadBooks }) {
           !record.returnedDate && (
             <div className="flex gap-1 items-center">
               <Button
-                title="Obnovi"
-                onClick={() => {
-                  setSelectedIssue(record);
-                  setShowIssueForm(true);
-                }}
-              />
-              <Button
-                title="Vrati"
+                title="Vrati knjigu"
                 onClick={() => onReturnHandler(record)}
               />
               <i
                 className="ri-delete-back-2-line"
-                //onClick={() => }
+                onClick={() => deleteIssueHandler(record)}
               ></i>
             </div>
           )

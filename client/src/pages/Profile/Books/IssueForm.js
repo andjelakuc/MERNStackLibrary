@@ -5,7 +5,7 @@ import Button from "../../../components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { GetUserById } from "../../../apicalls/users";
 import { HideLoading, ShowLoading } from "../../../redux/loadersSlice";
-import { EditIssue, IssueBook } from "../../../apicalls/issues";
+import { IssueBook } from "../../../apicalls/issues";
 
 function IssueForm({
   open = false,
@@ -150,7 +150,6 @@ function IssueForm({
     >
       <div className="flex flex-col gap-2">
         <h1 className="text-black font-bold text-xl text-center">
-          {/* {type === "edit" ? "Edit / Renew Issue" : "Issue Book"} */}
           Izdavanje knjige
         </h1>
         <div>
@@ -178,7 +177,7 @@ function IssueForm({
 
         {validated && (
           <div className="bg-third p-1 text-black">
-            <h1 className="text-sm">Član : {patronData.name}</h1>
+            <h1 className="text-sm">Korisnik : {patronData.name}</h1>
             {/* <h1>Broj dana : {moment(returnDate).diff(moment(), "days")}</h1> */}
             <h1>Knjiga : {selectedBook.title}</h1>
             <h1>Autor : {selectedBook.author}</h1>
