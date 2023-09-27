@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../../../redux/loadersSlice";
 import { GetAllUsers } from "../../../apicalls/users";
 import Button from "../../../components/Button";
+import IssuedBooks from "./IssuedBooks";
 
 function Users({ role }) {
   const [selectedUser, setSelectedUser] = useState(null);
@@ -48,6 +49,31 @@ function Users({ role }) {
       dataIndex: "phone",
     },
     {
+      title: "Članarina",
+      dataIndex: "status",
+      render: (status, record) => {
+        // <div className="flex flex-col">
+        //   <span className="text-xs text-gray-500">
+        //     {record.status === "pending" ? "Nije plaćena: 500 RSD" : "Plaćena"}
+        //   </span>
+        // </div>
+        return (
+          ((record.status === "pending") && (
+            <div className="flex flex-col items-center">
+              <span className="flex items-center gap-1 bg-red p-1 rounded outerline">Nije plaćena</span>
+            </div>
+          )
+              ||
+          (record.status === "active") && (
+            <div className="flex flex-col items-center">
+              <span className="flex items-center gap-1 bg-secondary p-1 rounded outerline">Plaćena</span>
+            </div>
+          ))
+
+        );
+      },
+    },
+    {
       title: "",
       dataIndex: "actions",
       render: (actions, record) => (
@@ -66,6 +92,13 @@ function Users({ role }) {
   ];
   return <div className="h-screen">
     <Table dataSource={users} columns={columns} />
+    {showIssuedBooks && (
+        <IssuedBooks
+          showIssuedBooks={showIssuedBooks}
+          setShowIssuedBooks={setShowIssuedBooks}
+          selectedUser={selectedUser}
+        />
+      )}
   </div>;
 }
 
