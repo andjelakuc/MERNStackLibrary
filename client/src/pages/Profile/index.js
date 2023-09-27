@@ -3,6 +3,7 @@ import { Tabs } from "antd";
 import Books from "./Books";
 import Users from "./Users";
 import { useSelector } from "react-redux";
+import Staff from "./Staff";
 const TabPane = Tabs.TabPane;
 
 function Profile() {
@@ -35,12 +36,12 @@ function Profile() {
         )}
         {role === "admin" && (
           <TabPane tab="Bibliotekari" key="5">
-            <Users role="librarian" />
+            <Staff role="librarian" />
           </TabPane>
         )}
         {role === "admin" && (
           <TabPane tab="Admini" key="6">
-            <Users role="admin" />
+            <Staff role="admin" />
           </TabPane>
         )}
         {/* {role === "admin" && (
