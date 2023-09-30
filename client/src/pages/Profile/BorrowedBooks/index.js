@@ -66,7 +66,7 @@ function BorrowedBooks() {
         if (returnedDate) {
           return moment(returnedDate).format("DD-MM-YYYY hh:mm A");
         } else {
-          return "Nije vraćeno";
+          return "Knjiga nije vraćena";
         }
       },
     },

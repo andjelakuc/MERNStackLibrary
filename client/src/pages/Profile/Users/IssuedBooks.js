@@ -8,6 +8,7 @@ import Button from "../../../components/Button";
 
 function IssuedBooks({ showIssuedBooks, setShowIssuedBooks, selectedUser }) {
   const [issuedBooks, setIssuedBooks] = React.useState([]);
+  const today = moment().format("YYYY-MM-DD");
   const dispatch = useDispatch();
   const getIssues = async () => {
     try {
@@ -52,6 +53,15 @@ function IssuedBooks({ showIssuedBooks, setShowIssuedBooks, selectedUser }) {
     {
       title: "Kazna za prekoračenje roka",
       dataIndex: "fine",
+      render: (fine, record) => {
+        if (today > record.returnDate && !record.returnedDate) {
+          return (
+            (moment(today).diff(record.returnDate, "days") + 1) * 5 + " RSD"
+          );
+        } else {
+          return record.fine + " RSD";
+        }
+      },
     },
     {
       title: "Datum vraćanja",
