@@ -2,13 +2,15 @@ import { message, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { HideLoading, ShowLoading } from "../../../redux/loadersSlice";
-import { DeleteUser, GetAllUsers } from "../../../apicalls/users";
+import { DeleteUser, GetAllUsers, UpdateUser } from "../../../apicalls/users";
 import Button from "../../../components/Button";
 import IssuedBooks from "./IssuedBooks";
+import UsersForm from "./UsersForm";
 
 function Users({ role }) {
   const [selectedUser, setSelectedUser] = useState(null);
   const [showIssuedBooks, setShowIssuedBooks] = useState(false);
+  const [openUsersForm, setOpenUsersForm] = React.useState(false);
   const [users, setUsers] = React.useState([]);
   const dispatch = useDispatch();
   const getUsers = async () => {
@@ -44,6 +46,24 @@ function Users({ role }) {
     }
   };
 
+  const payFee = async (values) => {
+    try {
+      dispatch(ShowLoading());
+      values.status = "active";
+      const response = await UpdateUser(values);
+      if (response.success) {
+        message.success(response.message);
+        getUsers();
+      } else {
+        message.error(response.message);
+      }
+      dispatch(HideLoading());
+    } catch (error) {
+      dispatch(HideLoading());
+      message.error(error.message);
+    }
+  };
+
   useEffect(() => {
     getUsers();
   }, []);
@@ -69,21 +89,13 @@ function Users({ role }) {
       title: "Članarina",
       dataIndex: "status",
       render: (status, record) => {
-        {/* // <div className="flex flex-col">
-        //   <span className="text-xs text-gray-500">
-        //     {record.status === "pending" ? "Nije plaćena: 500 RSD" : "Plaćena"}
-        //   </span>
-        // </div> */}
         return (
           (record.status === "pending" && (
             <div className="flex gap-1 items-center">
               <span className="flex items-center gap-1 bg-red p-1 rounded outerline">
                 Nije plaćena
               </span>
-              <Button
-            title="Plati"
-            color="fourth"
-          />
+              <Button title="Plati" color="fourth" onClick={() => payFee(record)} />
             </div>
           )) ||
           (record.status === "active" && (
@@ -124,12 +136,27 @@ function Users({ role }) {
   ];
   return (
     <div className="h-screen">
-      <Table dataSource={users} columns={columns} />
+      <div className="flex justify-end">
+        <Button
+          title="Dodaj korisnika"
+          color="fourth"
+          onClick={() => setOpenUsersForm(true)}
+        />
+      </div>
+      <Table dataSource={users} columns={columns} className="mt-1" />
       {showIssuedBooks && (
         <IssuedBooks
           showIssuedBooks={showIssuedBooks}
           setShowIssuedBooks={setShowIssuedBooks}
           selectedUser={selectedUser}
+        />
+      )}
+
+      {openUsersForm && (
+        <UsersForm
+          open={openUsersForm}
+          setOpen={setOpenUsersForm}
+          reloadUsers={getUsers}
         />
       )}
     </div>
