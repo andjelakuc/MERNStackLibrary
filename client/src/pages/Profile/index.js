@@ -4,6 +4,9 @@ import Books from "./Books";
 import Users from "./Users";
 import { useSelector } from "react-redux";
 import Staff from "./Staff";
+import Reports from "./Reports";
+import BasicDetails from "./BasicDetails";
+import BorrowedBooks from "./BorrowedBooks";
 const TabPane = Tabs.TabPane;
 
 function Profile() {
@@ -14,15 +17,15 @@ function Profile() {
   return (
     <div>
       <Tabs defaultActiveKey="1" centered>
-        {/* <TabPane tab="General" key="1">
+        <TabPane tab="Moje informacije" key="1">
           <BasicDetails />
-        </TabPane> */}
+        </TabPane>
 
-        {/* {role === "patron" && (
-             <TabPane tab="Books Borrowed" key="2">
+        {role === "patron" && (
+             <TabPane tab="Moje knjige" key="2">
              <BorrowedBooks />
            </TabPane>
-        )} */}
+        )}
 
         {role !== "patron" && (
           <TabPane tab="Knjige" key="3">
@@ -44,11 +47,11 @@ function Profile() {
             <Staff role="admin" />
           </TabPane>
         )}
-        {/* {role === "admin" && (
-          <TabPane tab="Reports" key="7">
+        {role === "admin" && (
+          <TabPane tab="Statistika" key="7">
             <Reports />
           </TabPane>
-        )} */}
+        )}
       </Tabs>
     </div>
   );
