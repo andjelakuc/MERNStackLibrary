@@ -17,7 +17,7 @@ router.post("/issue-new-book", authMiddleware, async (req, res) => {
     await newIssue.save();
     return res.send({
       success: true,
-      message: "Knjiga uspešno iznajmljena",
+      message: "Knjiga uspešno pozajmljena",
       data: newIssue,
     });
   } catch (error) {
@@ -28,14 +28,14 @@ router.post("/issue-new-book", authMiddleware, async (req, res) => {
   }
 });
 
-// dohvatanje zapisa iznajmljivanja za jednu knjigu
+// dohvatanje zapisa o pozajmljivanju za jednu knjigu
 router.post("/get-issues", authMiddleware, async (req, res) => {
   try {
     delete req.body.userIdFromToken;
     const issues = await Issue.find(req.body).populate("book").populate("user").sort({ issueDate: -1 });
     return res.send({
       success: true,
-      message: "Uspešno dohvatanje podataka o iznajmljivanju",
+      message: "Uspešno dohvatanje podataka o pozajmljivanju",
       data: issues,
     });
   } catch (error) {
@@ -79,7 +79,7 @@ router.post("/return-book", authMiddleware, async (req, res) => {
   }
 });
 
-// brisanje zapisa o iznajmljivanju
+// brisanje zapisa o pozajmljivanju
 router.post("/delete-issue", authMiddleware, async (req, res) => {
   try {
     // idostupne kopije uvećavamo za 1
@@ -90,19 +90,19 @@ router.post("/delete-issue", authMiddleware, async (req, res) => {
 
     // brisanje zapisa
     await Issue.findOneAndDelete({ _id: req.body._id });
-    res.send({ success: true, message: "Zapis o iznajmljivanju uspešno izbrisan" });
+    res.send({ success: true, message: "Zapis o pozajmljivanju uspešno izbrisan" });
   } catch (error) {
     res.send({ success: false, message: error.message });
   }
 });
 
-// izmenjivanje zapisa o iznajmljivanju
+// izmenjivanje zapisa o pozajmljivanju
 router.post("/edit-issue", authMiddleware, async (req, res) => {
   try {
     await Issue.findOneAndUpdate({
       _id: req.body._id,
     }, req.body);
-    res.send({ success: true, message: "Zapis o iznajmljivanju uspešno izmenjen" });
+    res.send({ success: true, message: "Zapis o pozajmljivanju uspešno izmenjen" });
   } catch (error) {
     res.send({ success: false, message: error.message });
   }

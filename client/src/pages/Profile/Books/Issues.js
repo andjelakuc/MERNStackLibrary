@@ -8,8 +8,7 @@ import Button from "../../../components/Button";
 
 function Issues({ open = false, setOpen, selectedBook, reloadBooks }) {
   const [issues, setIssues] = React.useState([]);
-  const [selectedIssue, setSelectedIssue] = React.useState(null);
-  const [showIssueForm, setShowIssueForm] = React.useState(false);
+  const today = moment().format("YYYY-MM-DD");
 
   const dispatch = useDispatch();
 
@@ -41,7 +40,8 @@ function Issues({ open = false, setOpen, selectedBook, reloadBooks }) {
       if (today > dueDate) {
         // ako je knjiga vraćena posle isteka roka
         // računamo koliko će korisnik dodatno da plati
-        const fine = moment(today).diff(dueDate, "days") * selectedBook?.rentPerDay;
+        const fine =
+          (moment(today).diff(dueDate, "days") + 1) * selectedBook?.rentPerDay;
         issue.fine = fine;
       }
       issue.returnedDate = new Date();
@@ -107,13 +107,15 @@ function Issues({ open = false, setOpen, selectedBook, reloadBooks }) {
     {
       title: "Kazna za prekoračenje roka",
       dataIndex: "fine",
-      render: (fine, record) => (
-        <div className="flex flex-col">
-          <span className="text-xs text-gray-500">
-            {record.fine || 0} RSD
-          </span>
-        </div>
-      ),
+      render: (fine, record) => {
+        if (today > record.returnDate && !record.returnedDate) {
+          return (
+            (moment(today).diff(record.returnDate, "days") + 1) * 5 + " RSD"
+          );
+        } else {
+          return record.fine + " RSD";
+        }
+      },
     },
     {
       title: "Datum vraćanja",
