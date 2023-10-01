@@ -8,10 +8,12 @@ const port = process.env.PORT || 5000;
 
 const usersRoute = require("./routes/usersRoute");
 const booksRoute = require("./routes/booksRoute");
+const postsRoute = require("./routes/postsRoute");
 const issuesRoute = require("./routes/issuesRoute");
 
 app.use("/api/users", usersRoute);
 app.use("/api/books", booksRoute);
+app.use("/api/posts", postsRoute);
 app.use("/api/issues", issuesRoute);
 
 
