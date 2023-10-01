@@ -64,7 +64,7 @@ function Posts() {
     {
       title: "Datum održavanja",
       dataIndex: "eventDate",
-      render: (date) => moment(date).format("DD-MM-YYYY hh:mm A"),
+      render: (date) => moment(date).format("DD-MM-YYYY"),
     },
     {
       title: "",

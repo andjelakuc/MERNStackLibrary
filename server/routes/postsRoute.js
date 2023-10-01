@@ -42,6 +42,17 @@ router.get("/get-all-posts", async (req, res) => {
     return res.send({ success: false, message: error.message });
   }
 });
+
+// dohvati poslednja 4 bloga
+router.get("/get-four-posts", async (req, res) => {
+  try {
+    const posts = await Post.find().sort({ createdAt: -1 }).limit(4);
+    return res.send({ success: true, data: posts });
+  } catch (error) {
+    return res.send({ success: false, message: error.message });
+  }
+});
+
 // dohvati blog po id-ju
 router.get("/get-post-by-id/:id", async (req, res) => {
   try {

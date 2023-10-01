@@ -56,7 +56,7 @@ function PostForm({ open, setOpen, reloadPosts, setFormType, formType, selectedP
                 <Row gutter={[20]}>
                     <Col span={24}>
                         <FormItem label="Naslov" name="title"
-                            rules={[{ required: true, message: 'Please input post title' }]}
+                            rules={[{ required: true, message: 'Unesite naslov' }]}
                         >
                             <input type="text" />
                         </FormItem>
@@ -64,7 +64,7 @@ function PostForm({ open, setOpen, reloadPosts, setFormType, formType, selectedP
 
                     <Col span={24}>
                         <FormItem label="Opis" name="description"
-                            rules={[{ required: true, message: 'Please input post description' }]}
+                            rules={[{ required: true, message: 'Unesite opis' }]}
                         >
                             <textarea type="text" />
                         </FormItem>
@@ -72,7 +72,7 @@ function PostForm({ open, setOpen, reloadPosts, setFormType, formType, selectedP
 
                     <Col span={24}>
                         <FormItem label="URL slike" name="image"
-                            rules={[{ required: true, message: 'Please input image url' }]}
+                            rules={[{ required: true, message: 'Unesite url slike' }]}
                         >
                             <input type="text" />
                         </FormItem>
@@ -80,9 +80,10 @@ function PostForm({ open, setOpen, reloadPosts, setFormType, formType, selectedP
 
                     <Col span={8}>
                         <FormItem label="Datum održavanja" name="eventDate"
-                            rules={[{ required: true, message: 'Please input event date' }]}
+                            rules={[{ required: true, message: 'Unesite datum održavanja' }]}
                         >
                             <input type="date" />
+                            
                         </FormItem>
                     </Col>
 

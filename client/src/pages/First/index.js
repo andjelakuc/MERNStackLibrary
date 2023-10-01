@@ -1,31 +1,26 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
+import About from "../About";
+import DonateBook from "../DonateBook";
+import RentABook from "./RentABook";
+import Blog from "../Blog";
+import Footer from "../Footer";
 
 function FirstPage() {
   const navigate = useNavigate();
   return (
-    <div className="bg-third">
-      <div className="p-1">
-        <div className="header p-2 bg-primary flex justify-between rounded items-center">
-          <h1
-            className="text-2xl text-black font-bold cursor-pointer"
-            onClick={() => navigate("/")}
-          >
-            BIBLIOTEKA
-          </h1>
-
-          <div className="flex items-center gap-1 bg-white p-1 rounded">
-            <i className="ri-user-heart-line"></i>
-            <span
-              className="text-sm cursor-pointer"
-              onClick={() => navigate("/login")}
-            >
-              Prijavite se
-            </span>
-          </div>
-        </div>
-      </div>
+    <>
+    <Navbar />
+    <div className="bg-third content p-1">
+      
+      <About />
+      <RentABook />
+      <DonateBook />
+      <Blog />
     </div>
+    <Footer />
+    </>
   );
 }
 

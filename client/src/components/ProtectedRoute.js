@@ -5,6 +5,7 @@ import { GetLoggedInUserDetails } from "../apicalls/users";
 import { SetUser } from "../redux/usersSlice";
 import { useNavigate } from "react-router-dom";
 import { ShowLoading, HideLoading } from "../redux/loadersSlice";
+import Footer from "../pages/Footer";
 
 function ProtectedRoute({ children }) {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ function ProtectedRoute({ children }) {
         <div className="p-1 bg-third">
           <div className="header p-2 bg-primary flex justify-between rounded items-center">
             <h1
-              className="text-2xl text-black cursor-pointer bg-white outerline p-1 rounded"
+              className="text-2xl text-black font-bold cursor-pointer"
               onClick={() => navigate("/home")}
             >
               BIBLIOTEKA
@@ -73,8 +74,11 @@ function ProtectedRoute({ children }) {
           </div>
 
           <div className="content mt-1">{children}</div>
+          
         </div>
+        
       )}
+      <Footer />
     </div>
   );
 }

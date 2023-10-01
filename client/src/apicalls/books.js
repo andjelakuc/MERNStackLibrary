@@ -20,6 +20,16 @@ export const GetAllBooks = async () => {
   }
 };
 
+// dohvati poslednjih 8 knjiga
+export const GetLast = async () => {
+  try {
+    const response = await axiosInstance.get("/api/books/get-eight-books");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 // izmeni knjigu
 export const UpdateBook = async (payload) => {
   try {

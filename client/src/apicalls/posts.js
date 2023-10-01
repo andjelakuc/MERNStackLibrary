@@ -20,6 +20,16 @@ export const GetAllPosts = async () => {
     }
   };
 
+  // dohvati poslednja 4 bloga
+export const GetLastFour = async () => {
+  try {
+    const response = await axiosInstance.get("/api/posts/get-four-posts");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 
 // izmeni blog
 export const UpdatePost = async (payload) => {

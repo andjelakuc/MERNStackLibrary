@@ -43,6 +43,16 @@ router.get("/get-all-books", authMiddleware, async (req, res) => {
     }
   });
 
+    // dohvatanje poslednjih 8 knjiga
+router.get("/get-eight-books", authMiddleware, async (req, res) => {
+  try {
+    const books = await Book.find().sort({ createdAt: -1 }).limit(8);
+    return res.send({ success: true, data: books });
+  } catch (error) {
+    return res.send({ success: false, message: error.message });
+  }
+});
+
   // dohvatanje knjige po id-ju
   router.get("/get-book-by-id/:id", authMiddleware, async (req, res) => {
     try {

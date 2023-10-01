@@ -1,109 +1,337 @@
 .authentication-form {
-    width: 400px;
+  width: 400px;
 }
 
 .font-bold {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .underline {
-    text-decoration: underline;
-    cursor: pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .uppercase {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 a:hover {
-    cursor: pointer;
-    color: var(--colour-primary);
-    /* text-decoration: underline; */
+  cursor: pointer;
+  color: var(--colour-primary);
+  /* text-decoration: underline; */
 }
 
 .loader-parent {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.775);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100000;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.775);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100000;
 }
 
 .loader {
-    height: 30px;
-    width: 30px;
-    border: 5px solid #fff;
-    border-top-color: rgba(128, 128, 128, 0.715);
-    border-radius: 50%;
-    animation: loader-anim 1s linear infinite;
+  height: 30px;
+  width: 30px;
+  border: 5px solid #fff;
+  border-top-color: rgba(128, 128, 128, 0.715);
+  border-radius: 50%;
+  animation: loader-anim 1s linear infinite;
 }
 
 .rounded {
-    border-radius: 4px;
+  border-radius: 4px;
 }
 
 .outerline {
-    border-color: #1c1c1c;
-    border-width:1px;
-    border-style:solid;
+  border-color: #1c1c1c;
+  border-width: 1px;
+  border-style: solid;
 }
 
 .shadow {
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-    border: 1px solid #cdcdcd;
-  }
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid #cdcdcd;
+}
 
 .cursor-pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 i {
-    cursor: pointer;
-    font-size: 18px;
+  cursor: pointer;
+  font-size: 18px;
 }
 
 table {
-    border: 1px solid #cdcdcd;
+  border: 1px solid #cdcdcd;
 }
 
 .disabled-btn {
-    cursor: not-allowed;
-    opacity: 0.5;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .error-message {
-    background-color: rgb(225, 109, 109);
-    color: white;
-    padding: 10px;
-    border-radius: 4px;
-    width: 95%;
-    
+  background-color: rgb(225, 109, 109);
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  width: 95%;
 }
 
 @keyframes loader-anim {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.ant-tabs-tab, .ant-tabs-tab-active, .ant-tabs-tab-btn {
-    color: #363636 !important; 
-    font-weight: 500;
- }
+.ant-tabs-tab,
+.ant-tabs-tab-active,
+.ant-tabs-tab-btn {
+  color: #363636 !important;
+  font-weight: 500;
+}
 
- .ant-tabs-ink-bar {
-    position: absolute;
-    background: #D8B4F8;
-    pointer-events: none;
-    border-bottom: 2px solid #D8B4F8;
-    border-color: #D8B4F8;
- }
+.ant-tabs-ink-bar {
+  position: absolute;
+  background: #d8b4f8;
+  pointer-events: none;
+  border-bottom: 2px solid #d8b4f8;
+  border-color: #d8b4f8;
+}
 
-  ::-webkit-scrollbar {
-    display: none;
+::-webkit-scrollbar {
+  display: none;
+}
+
+/*------------ About ----------*/
+
+.home {
+  height: 100vh;
+}
+.home .img {
+  height: 90vh;
+  width: 100%;
+  position: relative;
+}
+.home img {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  height: 90vh;
+  width: 100%;
+  object-fit: contain;
+  transform: scale(1.1);
+}
+.home h1 {
+  font-size: 60px;
+}
+
+.container {
+  max-width: 80%;
+  margin: auto;
+}
+
+.left,
+.right {
+  width: 50%;
+  position: relative;
+}
+
+.topMarign {
+  margin-top: 80px;
+  color: #363636;
+}
+
+.SocailIcon i {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  margin-right: 10px;
+  border-radius: 50%;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.SocailIcon i:hover {
+  color: #7e4696;
+}
+
+.home p {
+  margin-bottom: 20px;
+}
+p {
+  color: #7e4696;
+  line-height: 30px;
+}
+
+/*------------ RentABook ----------*/
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+.Branding {
+  color: #363636;
+  /* margin-top: 35px; */
+  padding: 80px 0;
+}
+.Branding h1 {
+  font-size: 40px;
+  color: #363636;
+  margin-right: 20px;
+}
+.Branding h2 {
+  font-weight: 500;
+  font-size: 22px;
+  margin: 10px 0 20px 0;
+}
+.Branding p {
+  color: #363636;
+  opacity: 0.7;
+}
+
+.wrapper .container {
+  max-width: 40%;
+  margin: auto;
+  text-align: center;
+}
+.wrapper h2 {
+  font-size: 40px;
+}
+.wrapper p {
+  opacity: 1;
+  margin-bottom: 30px;
+}
+
+/*------------ Services ----------*/
+.Services {
+  text-align: center;
+  padding: 50px 0;
+}
+.Services .box {
+  text-align: left;
+}
+.Services img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.Services .text {
+  background: #fff;
+  box-shadow: 0 5px 20px 0 r#363636;
+  padding: 30px;
+  margin: 20px;
+  margin-top: -30px;
+  position: relative;
+  z-index: 1;
+}
+.Services .text h2 {
+  font-weight: 500;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+/*------------ Services ----------*/
+
+.heading h1 {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+/*------------ blog ----------*/
+.blog .heading {
+    text-align: center;
   }
+  .blog .text {
+    margin: 0;
+  }
+  .blog span {
+    opacity: 0.5;
+    font-size: 15px;
+  }
+  .blog h2 {
+    margin: 20px 0;
+  }
+  .blog a {
+    color: #c378b6;
+    display: block;
+    line-height: 20px;
+  }
+  .blog a .icon {
+    padding-top: 10px;
+  }
+
+  /*------------ footer ----------*/
+footer {
+  background-color: #363636;
+  padding: 100px 0 0 0;
+  color: #fff;
+}
+footer p {
+  color: #fff;
+  margin: 20px 0;
+}
+footer .SocailIcon i {
+  
+  
+}
+footer h2 {
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+footer i {
+  color: #fff;
+  margin-bottom: 15px;
+}
+footer i:before {
+  content: "·";
+  font-size: 30px;
+  vertical-align: middle;
+  line-height: 10px;
+  margin-right: 20px;
+  color: #fff;
+}
+footer .box {
+  width: 35%;
+}
+footer .box p {
+  margin: 0;
+  margin-top: 15px;
+}
+footer span {
+  color: #ce9bcc;
+  opacity: 1;
+}
+footer .icon {
+  margin-top: 20px;
+  display: flex;
+}
+footer .icon i {
+  color: #ffffff;
+  margin-right: 20px;
+  width: 20px;
+  height: 20px;
+}
+.legal {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  margin-top: 70px;
+  padding: 20px 0;
+}
+
+footer .grid1 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+footer .container {
+  max-width: 95%;
+  margin: auto;
+}
+/*------------ footer ----------*/
