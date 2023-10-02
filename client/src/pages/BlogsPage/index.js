@@ -1,13 +1,13 @@
 import { Col, message, Row } from "antd";
 import React from "react"
-import { GetLastFour } from "../../apicalls/posts";
+import { GetAllPosts } from "../../apicalls/posts";
 import { useNavigate } from "react-router-dom";
 import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import moment from "moment";
 
-function Blog() {
+function BlogsPage() {
     const [posts, setPosts] = React.useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ function Blog() {
   const getPosts = async () => {
     try {
       dispatch(ShowLoading());
-      const response = await GetLastFour();
+      const response = await GetAllPosts();
       dispatch(HideLoading());
       if (response.success) {
         setPosts(response.data);
@@ -32,16 +32,10 @@ function Blog() {
     getPosts();
   }, []);
   return (
-    <>
-      <section className='blog Services bg-primary'>
-        <div className='container'>
-          <div className='heading text-black'>
-            {/* <h3>prijavite se za</h3> */}
-            <h1>AKTIVNOSTI</h1>
-          </div>
-
-          <div className='contain topMarign'>
-            <Row gutter={[16, 16]}>
+    <div className="p-2">
+      <section className='blog Services bg-third'>
+        
+            <Row gutter={[30, 30]}>
             {posts.map((post) => {
               return (
                 <Col xs={24} sm={24} md={12} lg={6} xl={6}
@@ -67,12 +61,10 @@ function Blog() {
             })}
             </Row>
 
-          </div>
-          <div className="topMarign text-black" onClick={() => navigate("/allPosts") }><i>Pogledajte sve aktivnosti &#10230;</i> </div>
-        </div>
+          
       </section>
-    </>
+    </div>
   )
 }
 
-export default Blog
+export default BlogsPage
