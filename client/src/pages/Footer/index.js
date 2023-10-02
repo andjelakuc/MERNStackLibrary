@@ -7,7 +7,7 @@ function Footer() {
         <div className='container grid1 flex justify-between'>
           <div className='box'>
             <img src='./assets/logo1.png' alt='' />
-            <p>Ovo je privatna biblioteka gde možete naći vaše omiljene knjige.
+            <p>Ovo je biblioteka gde možete naći vaše omiljene knjige.
             </p>
             <div className='SocailIcon'>
               <i class="ri-facebook-circle-fill"></i>

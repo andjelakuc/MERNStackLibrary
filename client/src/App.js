@@ -13,6 +13,10 @@ import { useSelector } from 'react-redux';
 import Loader from './components/Loader';
 import FirstPage from './pages/First';
 import Profile from './pages/Profile';
+import BooksPage from './pages/Books';
+import BlogsPage from './pages/BlogsPage';
+import BookDescription from './pages/BookDescription';
+import PostDescription from './pages/PostDescription';
 
 function App() {
 
@@ -24,6 +28,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<FirstPage />} />
+          <Route path="/allBooks" element={<ProtectedRoute><BooksPage /></ProtectedRoute>} />
+          <Route path="/allPosts" element={<ProtectedRoute><BlogsPage /></ProtectedRoute>} />
+          <Route path="/book/:id" element={<ProtectedRoute><BookDescription /></ProtectedRoute>} />
+          <Route path="/post/:id" element={<ProtectedRoute><PostDescription /></ProtectedRoute>} />
           <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
           <Route path="/login" element={<Login />} />

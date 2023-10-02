@@ -8,6 +8,7 @@ import { ShowLoading, HideLoading } from "../redux/loadersSlice";
 import Footer from "../pages/Footer";
 
 function ProtectedRoute({ children }) {
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.users);
   const dispatch = useDispatch();
@@ -35,15 +36,41 @@ function ProtectedRoute({ children }) {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate("/");
+      //navigate("/");
     } else {
       validateUserToken();
     }
   }, []);
   return (
     <div>
-      {user && (
-        <div className="p-1 bg-third">
+      {!token && (
+        <div className="bg-third">
+        <div className="p-1">
+          <div className="header p-2 bg-primary flex justify-between rounded items-center">
+            <h1
+              className="text-2xl text-black font-bold cursor-pointer"
+              onClick={() => navigate("/")}
+            >
+              BIBLIOTEKA
+            </h1>
+  
+            <div className="flex items-center gap-1 bg-white p-1 rounded">
+              <i className="ri-user-heart-line"></i>
+              <span
+                className="text-sm cursor-pointer"
+                onClick={() => navigate("/login")}
+              >
+                Prijavite se
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="content mt-1">{children}</div>
+      </div>
+      )}
+      {token && user && (
+        <div className="bg-third">
+          <div className="p-1">
           <div className="header p-2 bg-primary flex justify-between rounded items-center">
             <h1
               className="text-2xl text-black font-bold cursor-pointer"
@@ -51,7 +78,7 @@ function ProtectedRoute({ children }) {
             >
               BIBLIOTEKA
             </h1>
-
+            
             <div className="flex items-center gap-1 bg-white p-1 rounded outerline">
               <i
                 className="ri-empathize-line"
@@ -72,13 +99,13 @@ function ProtectedRoute({ children }) {
               ></i>
             </div>
           </div>
-
+          </div>
           <div className="content mt-1">{children}</div>
           
         </div>
         
       )}
-      <Footer />
+      
     </div>
   );
 }
