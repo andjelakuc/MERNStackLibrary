@@ -15,7 +15,7 @@ function Profile() {
   const role = user.role;
 
   return (
-    <div>
+    <div className="p-1">
       <Tabs defaultActiveKey="1" centered>
         <TabPane tab="Moje informacije" key="1">
           <BasicDetails />
