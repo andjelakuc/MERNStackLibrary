@@ -34,7 +34,7 @@ router.delete("/delete-book/:id", authMiddleware, async (req, res) => {
   });
 
   // dohvatanje svih knjiga
-router.get("/get-all-books", authMiddleware, async (req, res) => {
+router.get("/get-all-books", async (req, res) => {
     try {
       const books = await Book.find().sort({ createdAt: -1 });
       return res.send({ success: true, data: books });
@@ -44,7 +44,7 @@ router.get("/get-all-books", authMiddleware, async (req, res) => {
   });
 
     // dohvatanje poslednjih 8 knjiga
-router.get("/get-eight-books", authMiddleware, async (req, res) => {
+router.get("/get-eight-books", async (req, res) => {
   try {
     const books = await Book.find().sort({ createdAt: -1 }).limit(8);
     return res.send({ success: true, data: books });

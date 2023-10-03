@@ -17,11 +17,11 @@ function About() {
             </h1>
             
             <div className='SocailIcon'>
-              <i class="ri-facebook-circle-fill"></i>
-              <i class="ri-instagram-fill"></i>
-              <i class="ri-twitter-fill"></i>
-              <i class="ri-youtube-fill"></i>
-              <i class="ri-pinterest-fill"></i>
+              <i className="ri-facebook-circle-fill"></i>
+              <i className="ri-instagram-fill"></i>
+              <i className="ri-twitter-fill"></i>
+              <i className="ri-youtube-fill"></i>
+              <i className="ri-pinterest-fill"></i>
               
             </div>
             <p>Naša biblioteka je očaravajuće mesto koje pruža obilje intelektualnog bogatstva i kulturne raznolikosti svojim posetiocima. 

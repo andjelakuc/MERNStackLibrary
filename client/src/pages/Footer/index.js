@@ -10,26 +10,26 @@ function Footer() {
             <p>Ovo je biblioteka gde možete naći vaše omiljene knjige.
             </p>
             <div className='SocailIcon'>
-              <i class="ri-facebook-circle-fill"></i>
-              <i class="ri-instagram-fill"></i>
-              <i class="ri-twitter-fill"></i>
-              <i class="ri-youtube-fill"></i>
-              <i class="ri-pinterest-fill"></i>
+              <i className="ri-facebook-circle-fill"></i>
+              <i className="ri-instagram-fill"></i>
+              <i className="ri-twitter-fill"></i>
+              <i className="ri-youtube-fill"></i>
+              <i className="ri-pinterest-fill"></i>
             </div>
           </div>
           <div className='box'>
             <h2>Stupite u kontakt sa nama</h2>
             <p>Možete nas kontatkirati na sledeće načine:</p>
             <div className='icon'>
-              <i class='ri-map-pin-2-fill'></i>
+              <i className='ri-map-pin-2-fill'></i>
               <label>Locija: Kragujevac</label>
             </div>
             <div className='icon'>
-              <i class='ri-phone-fill'></i>
+              <i className='ri-phone-fill'></i>
               <label>Telefon: 000000</label>
             </div>
             <div className='icon'>
-              <i class='ri-mail-fill'></i>
+              <i className='ri-mail-fill'></i>
               <label>Email: biblioteka@gmail.com</label>
             </div>
           </div>

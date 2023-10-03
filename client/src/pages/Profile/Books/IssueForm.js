@@ -83,63 +83,6 @@ function IssueForm({
     }
   };
 
-  //   const onIssue = async () => {
-  //     try {
-  //       dispatch(ShowLoading());
-  //       let response = null;
-  //       if (type !== "edit") {
-  //         response = await IssueBook({
-  //           book: selectedBook._id,
-  //           user: patronData._id,
-  //           issueDate: new Date(),
-  //           returnDate,
-  //           rent:
-  //             moment(returnDate).diff(moment(), "days") *
-  //             selectedBook?.rentPerDay,
-  //           fine: 0,
-  //           issuedBy: user._id,
-  //         });
-  //       } else {
-  //         response = await EditIssue({
-  //           book: selectedBook._id,
-  //           user: patronData._id,
-  //           issueDate: selectedIssue.issueDate,
-  //           returnDate,
-  //           rent:
-  //             moment(returnDate).diff(moment(), "days") *
-  //             selectedBook?.rentPerDay,
-  //           fine: 0,
-  //           issuedBy: user._id,
-  //           _id: selectedIssue._id,
-  //         });
-  //       }
-  //       dispatch(HideLoading());
-  //       if (response.success) {
-  //         message.success(response.message);
-  //         getData();
-  //         setPatronId("");
-  //         setReturnDate("");
-  //         setValidated(false);
-  //         setErrorMessage("");
-  //         setSelectedBook(null);
-  //         setOpen(false);
-  //       } else {
-  //         message.error(response.message);
-  //       }
-  //     } catch (error) {
-  //       dispatch(HideLoading());
-  //       message.error(error.message);
-  //     }
-  //   };
-
-  //   useEffect(() => {
-  //     if (type === "edit") {
-  //       validate();
-  //     }
-  //   }, [open]);
-
-  //   console.log(type);
-
   return (
     <Modal
       title=""
@@ -159,18 +102,7 @@ function IssueForm({
             value={patronId}
             onChange={(e) => setPatronId(e.target.value)}
             placeholder="ID korisnika"
-            //disabled={type === "edit"}
           />
-        </div>
-        <div>
-          {/* <span>Datum vraćanja knjige </span> */}
-          {/* <input
-            type="date"
-            value={returnDate}
-            onChange={(e) => setReturnDate(e.target.value)}
-            placeholder="Return Date"
-            min={moment().format("YYYY-MM-DD")}
-          /> */}
         </div>
 
         {errorMessage && <span className="error-message">{errorMessage}</span>}
