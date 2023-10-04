@@ -8,6 +8,7 @@ import Reports from "./Reports";
 import BasicDetails from "./BasicDetails";
 import BorrowedBooks from "./BorrowedBooks";
 import Posts from "./Posts";
+import ReservedBooks from "./Reservations";
 const TabPane = Tabs.TabPane;
 
 function Profile() {
@@ -26,36 +27,41 @@ function Profile() {
             <BorrowedBooks />
           </TabPane>
         )}
+        {role === "patron" && (
+          <TabPane tab="Moje rezervacije" key="3">
+            <ReservedBooks />
+          </TabPane>
+        )}
 
         {role !== "patron" && (
-          <TabPane tab="Knjige" key="3">
+          <TabPane tab="Knjige" key="4">
             <Books />
           </TabPane>
         )}
 
         {role !== "patron" && (
-          <TabPane tab="Blogovi" key="4">
+          <TabPane tab="Blogovi" key="5">
             <Posts />
           </TabPane>
         )}
 
         {role !== "patron" && (
-          <TabPane tab="Korisnici" key="5">
+          <TabPane tab="Korisnici" key="6">
             <Users role="patron" />
           </TabPane>
         )}
         {role === "admin" && (
-          <TabPane tab="Bibliotekari" key="6">
+          <TabPane tab="Bibliotekari" key="7">
             <Staff role="librarian" />
           </TabPane>
         )}
         {role === "admin" && (
-          <TabPane tab="Admini" key="7">
+          <TabPane tab="Admini" key="8">
             <Staff role="admin" />
           </TabPane>
         )}
         {role === "admin" && (
-          <TabPane tab="Statistika" key="8">
+          <TabPane tab="Statistika" key="9">
             <Reports />
           </TabPane>
         )}
