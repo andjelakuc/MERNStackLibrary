@@ -1,14 +1,19 @@
 import { Col, message, Row } from "antd";
 import moment from "moment";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { GetBookById } from "../../apicalls/books";
 import { HideLoading, ShowLoading } from "../../redux/loadersSlice";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button";
+import ReservationForm from "./ReservationForm";
 
 function BookDescription() {
+  const token = localStorage.getItem("token");
   const [bookData, setBookData] = React.useState(null);
+  const [selectedBook, setSelectedBook] = useState(null);
+  const [openReservationsForm, setopenReservationsForm] = React.useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -34,7 +39,8 @@ function BookDescription() {
     getBook();
   }, []);
   return (
-    bookData && (
+    <div>
+    {bookData && (
       <div className="p-2">
         <Row gutter={[8, 8]} align="top" justify="center">
           <Col
@@ -46,7 +52,7 @@ function BookDescription() {
             className="flex flex-col gap-2"
           >
             <div className="flex justify-center">
-              <img src={bookData.image} alt=""  />
+              <img src={bookData.image} alt="" />
             </div>
           </Col>
           <Col
@@ -87,10 +93,28 @@ function BookDescription() {
               <h1 className="text-md">Dostupno kopija</h1>
               <h1 className="text-md">{bookData?.availableCopies}</h1>
             </div>
+            {/* <div className="flex justify-end">
+              <Button title="Rezerviši" color="fourth" />
+            </div> */}
+            {token && user.role ==="patron" && (
+              <div className="flex justify-end">
+                <Button title="Rezerviši" color="fourth" onClick={() => setopenReservationsForm(true)} />
+              </div>
+            )}
           </Col>
         </Row>
       </div>
-    )
+    )}
+    {openReservationsForm && (
+      <ReservationForm
+        open={openReservationsForm}
+        setOpen={setopenReservationsForm}
+        selectedBook={bookData}
+        setSelectedBook={setBookData}
+        getData={getBook}
+      />
+    )}
+    </div>
   );
 }
 
