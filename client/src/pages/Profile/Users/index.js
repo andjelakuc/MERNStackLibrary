@@ -6,10 +6,12 @@ import { DeleteUser, GetAllUsers, UpdateUser } from "../../../apicalls/users";
 import Button from "../../../components/Button";
 import IssuedBooks from "./IssuedBooks";
 import UsersForm from "./UsersForm";
+import ReservedBooks from "./ReservedBooks";
 
 function Users({ role }) {
   const [selectedUser, setSelectedUser] = useState(null);
   const [showIssuedBooks, setShowIssuedBooks] = useState(false);
+  const [showReservedBooks, setShowResevedBooks] = useState(false);
   const [openUsersForm, setOpenUsersForm] = React.useState(false);
   const [users, setUsers] = React.useState([]);
   const dispatch = useDispatch();
@@ -95,7 +97,11 @@ function Users({ role }) {
               <span className="flex items-center gap-1 bg-red p-1 rounded outerline">
                 Nije plaćena
               </span>
-              <Button title="Plati" color="fourth" onClick={() => payFee(record)} />
+              <Button
+                title="Plati"
+                color="fourth"
+                onClick={() => payFee(record)}
+              />
             </div>
           )) ||
           (record.status === "active" && (
@@ -119,6 +125,14 @@ function Users({ role }) {
             onClick={() => {
               setSelectedUser(record);
               setShowIssuedBooks(true);
+            }}
+          />
+          <Button
+            title="Rezervacije"
+            color="secondary"
+            onClick={() => {
+              setSelectedUser(record);
+              setShowResevedBooks(true);
             }}
           />
           <Button
@@ -148,6 +162,14 @@ function Users({ role }) {
         <IssuedBooks
           showIssuedBooks={showIssuedBooks}
           setShowIssuedBooks={setShowIssuedBooks}
+          selectedUser={selectedUser}
+        />
+      )}
+
+      {showReservedBooks && (
+        <ReservedBooks
+          showReservedBooks={showReservedBooks}
+          setShowResevedBooks={setShowResevedBooks}
           selectedUser={selectedUser}
         />
       )}
